@@ -41,7 +41,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
   const [editNote, setEditNote] = useState<Note>();
   const [dialogOpen, setDialogOpen] = useState(false);
   useEffect(() => {
-    axios.get('http://localhost:3000/api/notes').then((res) => {
+    axios.get(`${import.meta.env.VITE_SERVER_URL}api/notes`).then((res) => {
       setNotes(res.data);
     });
   }, []);
@@ -52,7 +52,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
 
   const deleteNote = async (noteId: string) => {
     try {
-      await axios.delete(`http://localhost:3000/api/notes/${noteId}`);
+      await axios.delete(`${import.meta.env.VITE_SERVER_URL}api/notes/${noteId}`);
       setNotes((prevNotes) => prevNotes.filter((note) => note._id !== noteId));
       setEditNote(undefined);
       if (editNote?._id === noteId) {
@@ -66,7 +66,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
   const updateNote = async ( updatedTitle: string) => {
     const noteId = editNote?._id
     try {
-      const response = await axios.put(`http://localhost:3000/api/notes/${noteId}`, { title: updatedTitle });
+      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}api/notes/${noteId}`, { title: updatedTitle });
       setNotes((prevNotes) => {
         const updatedNotes = prevNotes.map((note) => {
           if (note._id === noteId) {
@@ -84,7 +84,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
 
   const deleteComment = async (commentId: string) => {
     try {
-      await axios.delete(`http://localhost:3000/api/comments/${commentId}`).then(() => {
+      await axios.delete(`${import.meta.env.VITE_SERVER_URL}api/comments/${commentId}`).then(() => {
         setComments((prevComments) => prevComments.filter((comment) => comment._id !== commentId));
       });
     } catch (error) {
@@ -93,7 +93,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
   };
   const addComment = async (noteId: string, text: string) => {
     try {
-      const response = await axios.post(`http://localhost:3000/api/comments?noteId=${noteId}`, { text });
+      const response = await axios.post(`${import.meta.env.VITE_SERVER_URL}api/comments?noteId=${noteId}`, { text });
       setComments((prevComments) => [...prevComments, response.data]);
     } catch (error) {
       console.error('Error adding a comment:', error);
@@ -103,7 +103,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
   const updateComment = async (updatedText: string) => {
     const commentId = editComments?._id
     try {
-      const response = await axios.put(`http://localhost:3000/api/comments/${commentId}`, { text: updatedText });
+      const response = await axios.put(`${import.meta.env.VITE_SERVER_URL}api/comments/${commentId}`, { text: updatedText });
       setComments((prevComments) => {
         const updatedComments = prevComments.map((comment) => {
           if (comment._id === commentId) {
@@ -121,7 +121,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
 
   const addNote = async (note: string) => {
     try {
-      await axios.post('http://localhost:3000/api/notes', { title: note }).then((res) => {
+      await axios.post(`${import.meta.env.VITE_SERVER_URL}api/notes`, { title: note }).then((res) => {
         setNotes(res.data);
       });
     } catch (error) {
@@ -131,7 +131,7 @@ export function NotesProvider({ children }: NotesProviderProps) {
 
   const getComments = async (noteId: string) => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/comments?noteId=${noteId}`);
+      const response = await axios.get(`${import.meta.env.VITE_SERVER_URL}api/comments?noteId=${noteId}`);
       setComments(response.data);
       return;
     } catch (error) {

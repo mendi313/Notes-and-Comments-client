@@ -1,5 +1,4 @@
 import { useNotes } from '../Context/NotesContext';
-import '../style/Comments.css';
 import CommentItem from './CommentItem'; // Import the CommentItem component
 import AddIcon from './icons/AddIcon';
 

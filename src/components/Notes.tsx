@@ -42,10 +42,8 @@ export default function Notes() {
             ))}
           </div>
           <div>
-            <button className="flex mb-5 justify-center">
-              <Link to="/addNote">
-                <button className="create-Button">Create New Note</button>
-              </Link>
+            <button className="create-Button flex mb-5 text-white font-mono text-lg items-center justify-center ">
+              <Link to="/addNote">Create New Note</Link>
             </button>
           </div>
         </div>
