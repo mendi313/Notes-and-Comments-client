@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  display: flex;
+  padding: 148px 126px 148px 125px;
+  justify-content: center;
+  align-items: center;
+  background: #07c7a4;
+  @apply h-screen;
+}

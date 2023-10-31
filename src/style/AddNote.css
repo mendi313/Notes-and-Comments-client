@@ -1,0 +1,5 @@
+.note-input {
+  flex-shrink: 0;
+  border: 1px solid #07c7a4;
+  background: #f2f2f2;
+}

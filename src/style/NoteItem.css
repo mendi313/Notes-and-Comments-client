@@ -1,0 +1,12 @@
+.note {
+  color: #0bc08a;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  padding: 8px;
+  line-height: normal;
+  border-top: 1px solid #47c6af;
+  border-bottom: 1px solid #47c6af;
+  height: 42px;
+}
