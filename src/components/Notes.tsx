@@ -1,12 +1,13 @@
 import '../style/Notes.css';
 import { useNotes } from '../Context/NotesContext';
 import NoteItem from './NoteItem';
-import { Link } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import Comments from './Comments';
 import CreateComment from './CreateComment';
 import { Note } from '../types/note';
 
 export default function Notes() {
+  const navigate = useNavigate();
   const { notes, getComments, editNote, updateComment, setEditComments, editComments, setEditNote, dialogOpen, setDialogOpen, addComment } =
     useNotes();
 
@@ -29,6 +30,11 @@ export default function Notes() {
     handleCloseDialog(); // Close the dialog
   };
 
+  const handelCreateButton = () => {
+    setEditNote(undefined)
+    navigate('/addNote');
+  };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className={`main w-full ${dialogOpen ? 'blur-sm' : ''}`}>
@@ -42,8 +48,8 @@ export default function Notes() {
             ))}
           </div>
           <div>
-            <button className="create-Button flex mb-5 text-white font-mono text-lg items-center justify-center ">
-              <Link to="/addNote">Create New Note</Link>
+            <button onClick={handelCreateButton} className="create-Button flex mb-5 text-white font-mono text-lg items-center justify-center ">
+              Create New Note
             </button>
           </div>
         </div>

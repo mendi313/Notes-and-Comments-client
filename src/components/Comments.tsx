@@ -1,9 +1,9 @@
 import { useNotes } from '../Context/NotesContext';
 import CommentItem from './CommentItem'; // Import the CommentItem component
-import AddIcon from './icons/AddIcon';
+import { PopoverDefault } from './Popover';
 
 export default function Comments() {
-  const { comments, setDialogOpen, editNote } = useNotes();
+  const { comments } = useNotes();
 
   return (
     <div className="w-full ">
@@ -22,9 +22,7 @@ export default function Comments() {
         </div>
         <div className=" mb-6 mr-6 flex justify-between">
           <div></div>
-          <button onClick={() => editNote && setDialogOpen(true)}>
-            <AddIcon />
-          </button>
+          <PopoverDefault />
         </div>
       </div>
     </div>
